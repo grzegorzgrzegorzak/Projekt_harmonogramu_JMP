@@ -20,7 +20,7 @@ class Supervisor(Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
-
+fdf
 class Region(Model):
     name = CharField(max_length=30)
 
