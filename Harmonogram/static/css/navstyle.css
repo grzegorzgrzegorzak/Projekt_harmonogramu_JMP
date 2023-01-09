@@ -1,0 +1,15 @@
+.navbar {
+    height: 90px;
+    padding: 16px 16px;
+}
+
+.logo-biedronki {
+    padding: 0 32px 0 0;
+    height: 58px;
+
+}
+.navbar-item {
+    text-decoration: None;
+    font-size: 25px;
+    padding: 0 32px 0 0;
+}

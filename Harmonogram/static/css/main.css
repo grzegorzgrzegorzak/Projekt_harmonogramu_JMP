@@ -1,7 +1,9 @@
-body {
-    background-color: green;
-}
+@import "navstyle.css";
 
+
+body {
+    background-color: wheat;
+}
 h3 {
-    background-size: 20px;
+    background-size: 60px;
 }
