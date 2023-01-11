@@ -1,15 +1,19 @@
 {% extends 'schedule/main.html' %}
 {% load static %}
 {% block content %}
-    <div class="row table-title">
-
+    <div class="table">
+        <table class="table">
+            <tr>
+                <th>Start montażu</th>
+                <th>Numer sklepu</th>
+                <th>Typ</th>
+                <th>Miasto</th>
+                <th>Ulica</th>
+                <th>Kod pocztowy</th>
+                <th>Data otwarcia</th>
+            </tr>
+            {% for store in
+        </table>
     </div>
-    <div class="row">
-        <a>Cell</a>
-
-    </div>
-
-
-
 
 {% endblock content %}

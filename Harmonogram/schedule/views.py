@@ -11,3 +11,4 @@ def schedule(request):
 def generate(request):
     context = {}
     return render(request, 'schedule/generate.html', context)
+
