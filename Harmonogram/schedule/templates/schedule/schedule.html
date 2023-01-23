@@ -12,7 +12,12 @@
                 <th>Kod pocztowy</th>
                 <th>Data otwarcia</th>
             </tr>
-            {% for store in
+            {% for store in stores %}
+                <tr>
+                    {{store.number}}
+
+                </tr>
+            {% endfor %}
         </table>
     </div>
 
