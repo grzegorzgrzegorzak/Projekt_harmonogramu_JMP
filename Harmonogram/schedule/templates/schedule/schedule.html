@@ -3,21 +3,25 @@
 {% block content %}
     <div class="table">
         <table class="table">
-            <tr>
-                <th>Start montażu</th>
-                <th>Numer sklepu</th>
-                <th>Typ</th>
-                <th>Miasto</th>
-                <th>Ulica</th>
-                <th>Kod pocztowy</th>
-                <th>Data otwarcia</th>
-            </tr>
-            {% for store in stores %}
+            <div>
                 <tr>
-                    {{store.number}}
-
+                    <th>Start montażu</th>
+                    <th>Numer sklepu</th>
+                    <th>Typ</th>
+                    <th>Miasto</th>
+                    <th>Ulica</th>
+                    <th>Kod pocztowy</th>
+                    <th>Data otwarcia</th>
                 </tr>
-            {% endfor %}
+            </div>
+
+            <div>
+                {% for store in stores %}
+                <tr>
+                    <h6>{{store.store_number}}</h6>
+                </tr>
+                {% endfor %}
+            </div>
         </table>
     </div>
 

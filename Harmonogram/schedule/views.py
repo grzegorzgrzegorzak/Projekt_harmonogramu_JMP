@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from schedule.models import Store
+from .models import *
 
 
 # Create your views here.
