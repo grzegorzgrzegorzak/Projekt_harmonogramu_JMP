@@ -14,6 +14,7 @@ def schedule(request):
     context = {'stores': stores}
     return render(request, 'schedule/schedule.html', context)
 
+
 def generate(request):
     context = {}
     return render(request, 'schedule/generate.html', context)

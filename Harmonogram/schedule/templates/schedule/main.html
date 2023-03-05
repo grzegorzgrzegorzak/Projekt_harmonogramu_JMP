@@ -15,18 +15,8 @@
 
 </head>
 <body>
+    {% include 'schedule/navbar.html' %}
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-        <a class="navbar-brand logo" href="{% url 'schedule' %}"><img class="navbar logo-biedronki" src="{% static 'images/biedronka-footer.png' %}" ></a>
-        <a class="navbar-item" href="{% url 'schedule' %}">Home</a>
-        <a class="navbar-item" href="{% url 'generate' %}">Generate</a>
-        <div class="login-container">
-	     	<a href="#"class="btn btn-warning">Login</a>
-
-	    </div>
-
-    </nav>
     {% block content %}
 
     {% endblock content %}
