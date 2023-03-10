@@ -1,5 +1,7 @@
 @import "navstyle.css";
 @import "tablestyle.css";
+@import "navstyle.css";
+@import "status.css";
 
 body {
     background-color: wheat;
