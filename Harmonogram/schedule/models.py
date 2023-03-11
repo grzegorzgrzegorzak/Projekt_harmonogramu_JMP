@@ -35,6 +35,11 @@ class Subcontractor(Model):
 
 
 class Store(Model):
+    REGION = (
+        ('T','Wojnicz'),
+        ('LUB','Lubartów')
+    )
+
     store_number = CharField(max_length=4, null=False)
     store_city = CharField(max_length=30)
     store_street = CharField(max_length=30)
@@ -45,7 +50,7 @@ class Store(Model):
     date_disassembling = DateTimeField(null=True)
     store_type = ForeignKey(StoreType, null=True, on_delete=SET_NULL)
     supervisor = ForeignKey(Supervisor, null=True, on_delete=SET_NULL)
-    region = ForeignKey(Region, null=True, on_delete=SET_NULL)
+    region = ForeignKey(Region, null=True, on_delete=SET_NULL, choices=REGION)
     subcontractor = ForeignKey(Subcontractor, null=True, on_delete=SET_NULL)
 
     class Meta:
