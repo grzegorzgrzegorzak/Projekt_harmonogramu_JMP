@@ -3,11 +3,13 @@ from django.db.models import Model, CharField, IntegerField, DateTimeField, \
     OneToOneField, ForeignKey, SET_NULL
 
 
-
 # Create your models here.
 
 class StoreType(Model):
     condition = CharField(max_length=30)
+
+    def __str__(self):
+        return self.condition
 
     # class Meta:
     #     app_label = 'dfafasdfasdf'
@@ -24,6 +26,9 @@ class Supervisor(Model):
 class Region(Model):
     name = CharField(max_length=30)
 
+    def __str__(self):
+        return self.name
+
 
 class Subcontractor(Model):
     name = CharField(max_length=30)
@@ -36,8 +41,8 @@ class Subcontractor(Model):
 
 class Store(Model):
     REGION = (
-        ('T','Wojnicz'),
-        ('LUB','Lubartów')
+        ('T', 'Wojnicz'),
+        ('LUB', 'Lubartów')
     )
 
     store_number = CharField(max_length=4, null=False)
@@ -45,13 +50,17 @@ class Store(Model):
     store_street = CharField(max_length=30)
     store_street_number = CharField(max_length=30)
     zip_code = CharField(max_length=6)
-    date_start_installation = DateTimeField(null=True)
-    date_opening = DateTimeField(null=True)
-    date_disassembling = DateTimeField(null=True)
-    store_type = ForeignKey(StoreType, null=True, on_delete=SET_NULL)
-    supervisor = ForeignKey(Supervisor, null=True, on_delete=SET_NULL)
-    region = ForeignKey(Region, null=True, on_delete=SET_NULL, choices=REGION)
-    subcontractor = ForeignKey(Subcontractor, null=True, on_delete=SET_NULL)
+    date_start_installation = DateTimeField(null=True, blank=True)
+    date_opening = DateTimeField(null=True, blank=True)
+    date_disassembling = DateTimeField(null=True, blank=True)
+    store_type = ForeignKey(StoreType, null=True, blank=True,
+                            on_delete=SET_NULL)
+    supervisor = ForeignKey(Supervisor, null=True, blank=True,
+                            on_delete=SET_NULL)
+    region = ForeignKey(Region, null=True, blank=True, on_delete=SET_NULL,
+                        choices=REGION)
+    subcontractor = ForeignKey(Subcontractor, null=True, blank=True,
+                               on_delete=SET_NULL)
 
     class Meta:
         app_label = "schedule"
@@ -64,4 +73,3 @@ class Store(Model):
 
 class MaterialConfiguration(Model):
     pass
-
