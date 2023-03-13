@@ -1,40 +1,22 @@
-from os import path, environ
-from sys import path as sys_path
-
-sys_path.append("/PYTHON/Projekt_harmonogramu_JMP/Harmonogram")
-environ.setdefault('DJANGO_SETTINGS_MODULE',
-                   'Harmonogram.Harmonogram.settings')
-
-import django
-
-django.setup()
-
 import json
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
+from datetime import datetime
 
-import django
+data = datetime(2004, 8, 23)
 
-django.setup()
-
-# from Harmonogram.schedule.models import Store
-
+print(data)
 
 wb = load_workbook(
     filename="D:\Python\Projekt_harmonogramu_JMP\Harmonogram prac JMP (1).xlsx",
     data_only=True)
 
 sheet = wb["2022"]
+print(sheet.title)
 
 list_of_values = [i for i in sheet[1]]
-# print(list_of_values, len(list_of_values), list_of_values[1].value)
 
 print(list_of_values)
-
-# for i in list_of_values(
-#     if i[ ]
-# )
-
 
 print(sheet["A2"].value)
 
@@ -44,6 +26,31 @@ def cell_value(searching_name, counting):
         if i.value == searching_name:
             letter = get_column_letter(i.column)
             return sheet[f"{letter}{counting}"].value
+    return None
+
+
+def get_month(month: str):
+    dict_of_months = {
+        "Styczeń": 1,
+        "Luty": 2,
+        "Marzec": 3,
+        "Kwiecień": 4,
+        "Maj": 5,
+        "Czerwiec": 6,
+        "Lipiec": 7,
+        "Sierpień": 8,
+        "Wrzesień": 9,
+        "Październik": 10,
+        "Listopad": 11,
+        "Grudzień": 12,
+    }
+    if month != None and month in dict_of_months.keys():
+        month = month.strip()
+        return dict_of_months[month]
+    else:
+        return None
+
+print(get_month("Marzec"))
 
 
 def get_street_or_number(string=str, position=int):
@@ -64,7 +71,17 @@ def get_street_or_number(string=str, position=int):
     else:
         return None
 
-# def change_date()
+
+def data_changer(iterator):
+    day = cell_value("Start montażu - dostawa listy zmiennej i mebli", iterator)
+    year = int(sheet.title)
+    month = get_month(cell_value("Miesiac montażu", iterator))
+    print(type(day), type(month), iterator)
+    if not all(isinstance(i, int) for i in [day, year, month]):
+        return None
+    else:
+        return datetime(year, month, day).strftime("%Y-%m-%d %H:%M:%S")
+
 
 
 def create_json():
@@ -79,7 +96,10 @@ def create_json():
                 "store_street": f'{get_street_or_number(cell_value("Ulica dostawy", i), 0)}',
                 "store_street_number": f'{get_street_or_number(cell_value("Ulica dostawy", i), 1)}',
                 "zip_code": f'{cell_value("Kod pocztowy", i)}',
-                # "date_start_installation": f'{cell_value("Start montażu - dostawa listy zmiennej i mebli", i)}{cell_value("Miesiac montażu", i)}',
+                "date_start_installation": data_changer(i),
+                "date_opening": f'{cell_value("Data otwarcia sklepu", i)}',
+                "date_disassembling": f'{cell_value("Demontaż", i)}'
+
             }
         }
         list_of_data.append(x)
@@ -91,4 +111,3 @@ def create_json():
 
 print(cell_value("Miasto dostawy", 5))
 print(create_json())
-
