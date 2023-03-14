@@ -3,23 +3,12 @@ from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 from datetime import datetime
 
-data = datetime(2004, 8, 23)
-
-print(data)
-
 wb = load_workbook(
     filename="D:\Python\Projekt_harmonogramu_JMP\Harmonogram prac JMP (1).xlsx",
     data_only=True)
 
 sheet = wb["2022"]
-print(sheet.title)
-
 list_of_values = [i for i in sheet[1]]
-
-print(list_of_values)
-
-print(sheet["A2"].value)
-
 
 def cell_value(searching_name, counting):
     for i in list_of_values:
@@ -27,6 +16,13 @@ def cell_value(searching_name, counting):
             letter = get_column_letter(i.column)
             return sheet[f"{letter}{counting}"].value
     return None
+
+
+def data_validator(value):
+    if isinstance(value, datetime):
+        return value.strftime("%Y-%m-%d %H:%M:%S")
+    else:
+        return None
 
 
 def get_month(month: str):
@@ -49,8 +45,6 @@ def get_month(month: str):
         return dict_of_months[month]
     else:
         return None
-
-print(get_month("Marzec"))
 
 
 def get_street_or_number(string=str, position=int):
@@ -97,8 +91,8 @@ def create_json():
                 "store_street_number": f'{get_street_or_number(cell_value("Ulica dostawy", i), 1)}',
                 "zip_code": f'{cell_value("Kod pocztowy", i)}',
                 "date_start_installation": data_changer(i),
-                "date_opening": f'{cell_value("Data otwarcia sklepu", i)}',
-                "date_disassembling": f'{cell_value("Demontaż", i)}'
+                "date_opening": data_validator(cell_value("Data otwarcia sklepu", i)),
+                "date_disassembling": data_validator(cell_value("Demontaż", i))
 
             }
         }
