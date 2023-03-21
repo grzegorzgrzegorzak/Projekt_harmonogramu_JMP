@@ -1,6 +1,6 @@
 from django.shortcuts import render
-
 from .models import *
+from datetime import datetime, timedelta
 
 
 # Create your views here.
@@ -11,11 +11,13 @@ from .models import *
 
 def schedule(request):
     stores = Store.objects.all()
-    context = {'stores': stores}
+    in30days = Store.objects.filter(date_opening__gte=datetime.now(),
+                                      date_opening__lt=datetime.now().date()
+                                                       + timedelta(days=30))
+    context = {'stores': stores, 'in30days': in30days}
     return render(request, 'schedule/schedule.html', context)
 
 
 def generate(request):
     context = {}
     return render(request, 'schedule/generate.html', context)
-

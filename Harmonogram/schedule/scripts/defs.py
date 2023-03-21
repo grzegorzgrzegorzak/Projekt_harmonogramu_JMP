@@ -1,7 +1,7 @@
 import json
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
-from datetime import datetime
+from datetime import datetime, timedelta
 
 wb = load_workbook(
     filename="D:\Python\Projekt_harmonogramu_JMP\Harmonogram prac JMP (1).xlsx",
@@ -105,3 +105,11 @@ def create_json():
 
 print(cell_value("Miasto dostawy", 5))
 print(create_json())
+
+
+# def in_one_month(date_opening):
+#     now = datetime.now()
+#     return
+
+date = datetime.now().date() + timedelta(days=30)
+print(date)
