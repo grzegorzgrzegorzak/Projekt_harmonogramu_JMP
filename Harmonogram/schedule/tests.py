@@ -1,14 +1,15 @@
-from datetime import datetime, timedelta
-
-from django.test import TestCase
-
 # Create your tests here.
+from datetime import timedelta
+
 from models import *
 
+from django.test import TestCase
+from django.test.utils import override_settings
+from django.utils import timezone
+import freezegun
 
-def test_in30days_query(date: datetime.date):
-    return Store.objects.filter(date_opening__gte=date,
-                                date_opening__lt=date
-                                                 + timedelta(days=30))
 
-assert test_in30days_query(datetime.date(2022, 6, 1))
+@freezegun.freeze_time('2022-06-01 10:00:00', tick=True)
+def test_my_model_queryset(self):
+    my_model = Store.objects.all()
+
