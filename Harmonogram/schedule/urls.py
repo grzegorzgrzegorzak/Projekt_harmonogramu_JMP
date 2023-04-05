@@ -3,5 +3,5 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.schedule, name='schedule'),
-    path('generate/', views.generate, name='generate')
+    path('generate/<str:pk>/', views.generate, name='generate')
 ]
