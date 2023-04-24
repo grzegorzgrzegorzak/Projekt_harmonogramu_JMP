@@ -53,6 +53,7 @@ class Store(Model):
     date_start_installation = DateTimeField(null=True, blank=True)
     date_opening = DateTimeField(null=True, blank=True)
     date_disassembling = DateTimeField(null=True, blank=True)
+    date_of_adding = DateTimeField(null=True, blank=True)
     store_type = ForeignKey(StoreType, null=True, blank=True,
                             on_delete=SET_NULL)
     supervisor = ForeignKey(Supervisor, null=True, blank=True,
