@@ -3,6 +3,7 @@ from django.urls import reverse
 from .models import *
 from datetime import datetime, timedelta
 import freezegun
+from .forms import StoreForm
 
 
 # Create your views here.
@@ -37,5 +38,32 @@ def generate(request, pk=None):
 
 
 def createStore(request):
-    context = {}
+
+    form = StoreForm()
+    if request.method == 'POST':
+        form = StoreForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
     return render(request, 'schedule/crud.html', context)
+
+def updateStore(request, pk):
+
+    store = Store.objects.get(id=pk)
+    form = StoreForm(instance=store)
+    if request.method == 'POST':
+        form = StoreForm(request.POST, instance=store)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'schedule/crud.html', context)
+
+def deleteStore(request, pk):
+
+    store = Store.objects.get(id=pk)
+    context = {}
+    return render(request, 'schedule/delete.html', context)

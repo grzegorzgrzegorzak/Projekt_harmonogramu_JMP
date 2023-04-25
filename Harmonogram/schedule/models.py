@@ -23,13 +23,6 @@ class Supervisor(Model):
         return f"{self.first_name} {self.last_name}"
 
 
-class Region(Model):
-    name = CharField(max_length=30)
-
-    def __str__(self):
-        return self.name
-
-
 class Subcontractor(Model):
     name = CharField(max_length=30)
     contact_person = CharField(max_length=30)
@@ -53,13 +46,12 @@ class Store(Model):
     date_start_installation = DateTimeField(null=True, blank=True)
     date_opening = DateTimeField(null=True, blank=True)
     date_disassembling = DateTimeField(null=True, blank=True)
-    date_of_adding = DateTimeField(null=True, blank=True)
+    date_of_adding = DateTimeField(auto_now_add=True, null=True)
     store_type = ForeignKey(StoreType, null=True, blank=True,
                             on_delete=SET_NULL)
     supervisor = ForeignKey(Supervisor, null=True, blank=True,
                             on_delete=SET_NULL)
-    region = ForeignKey(Region, null=True, blank=True, on_delete=SET_NULL,
-                        choices=REGION)
+    region = CharField(max_length=30, choices=REGION, null=True)
     subcontractor = ForeignKey(Subcontractor, null=True, blank=True,
                                on_delete=SET_NULL)
 
