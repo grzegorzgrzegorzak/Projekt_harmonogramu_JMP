@@ -134,7 +134,7 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-import django
-# os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
-django.setup()
+#
+# import django
+# # os.environ.setdefault("DJANGO_SETTINGS_MODULE", __file__)
+# django.setup()

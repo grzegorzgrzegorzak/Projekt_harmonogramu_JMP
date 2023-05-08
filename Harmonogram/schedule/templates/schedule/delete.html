@@ -4,8 +4,9 @@
 
 <p>Czy na pewno chcesz usunąć sklep "{{store}}"</p>
 
-<form method="POST">
+<form action="{% url 'delete_store' store.id %}" method="POST">
 
+    {% csrf_token %}
     <a href="{% url 'schedule' %}">Cancel</a>
 
     <input type="submit" name="Confirm">

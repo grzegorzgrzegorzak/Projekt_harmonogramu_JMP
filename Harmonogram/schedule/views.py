@@ -1,3 +1,5 @@
+from django.core import serializers
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import *
@@ -27,7 +29,7 @@ def schedule(request):
     return render(request, 'schedule/schedule.html', context)
 
 
-#dopisać ifa gdy nie ma paramteru pk
+
 def generate(request, pk=None):
     if pk is None:
         return render(request, 'schedule/generate.html')
@@ -65,5 +67,21 @@ def updateStore(request, pk):
 def deleteStore(request, pk):
 
     store = Store.objects.get(id=pk)
-    context = {}
+    if request.method == "POST":
+        store.delete()
+        return redirect('/')
+    context = {'store': store}
     return render(request, 'schedule/delete.html', context)
+#
+def json_view(request):
+    my_store = Store.objects.all()
+    data = []
+    for obj in my_store:
+        item = {
+            'id': obj.id,
+            'name': obj.zip_code,
+            'region': obj.region
+        }
+        data.append(item)
+    context = {'data': data}
+    return JsonResponse(context)

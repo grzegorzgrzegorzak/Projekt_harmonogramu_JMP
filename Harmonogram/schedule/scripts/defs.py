@@ -92,8 +92,8 @@ def create_json():
                 "zip_code": f'{cell_value("Kod pocztowy", i)}',
                 "date_start_installation": data_changer(i),
                 "date_opening": data_validator(cell_value("Data otwarcia sklepu", i)),
-                "date_disassembling": data_validator(cell_value("Demontaż", i))
-
+                "date_disassembling": data_validator(cell_value("Demontaż", i)),
+                "region": f'{cell_value("Region", i)}'
             }
         }
         list_of_data.append(x)
