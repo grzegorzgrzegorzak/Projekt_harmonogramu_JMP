@@ -72,16 +72,43 @@ def deleteStore(request, pk):
         return redirect('/')
     context = {'store': store}
     return render(request, 'schedule/delete.html', context)
-#
-def json_view(request):
-    my_store = Store.objects.all()
+
+def region_color_row(request):
+    stores = Store.objects.all()
     data = []
-    for obj in my_store:
+    for obj in stores:
         item = {
             'id': obj.id,
-            'name': obj.zip_code,
             'region': obj.region
         }
         data.append(item)
     context = {'data': data}
     return JsonResponse(context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def json_view(request):
+#     my_store = Store.objects.all()
+#     data = []
+#     for obj in my_store:
+#         item = {
+#             'id': obj.id,
+#             'name': obj.zip_code,
+#             'region': obj.region
+#         }
+#         data.append(item)
+#     context = {'data': data}
+#     return JsonResponse(context)

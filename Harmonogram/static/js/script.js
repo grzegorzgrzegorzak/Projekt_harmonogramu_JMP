@@ -2,35 +2,21 @@ console.log('hello world')
 const helloWorldBox = document.getElementById('rowsd')
 const storeBox = document.getElementById('rowsd')
 
-$.ajax({
-    type: 'GET',
-    url: "/json_view/",
-    success: function(response) {
-        console.log('success', response.text)
-        helloWorldBox.textContent = response.text
-    },
-    error: function(error){
-        console.log('error', error)
-    }
-})
 
-$.ajax({
-    type: 'GET',
-    url: '/json_view',
-    success: function(response){
-        console.log(response)
-        const data = response.data
-        console.log(data)
-        data.forEach(el =>{
-            storeBox.innerHTML += `
-                ${el.id} - <b>${el.name}</b><br>
+$(function() {
+    $.get('/region_color_row/', function(response) {
+        var store = response.data;
+        var $element = $('.color-row');
+        store.forEach(el => {
+            if (el.region === 'LUB')    {
+                console.log(el);
+                console.log(store);
+                $element.css('background-color', 'green');
 
-            `
-
+            } else {
+                console.log(el.region)
+                $element.css('background-color', 'red');
+            }
         });
-    },
-    error: function(error){
-        console.log(error)
-    }
-
-})
+    });
+});

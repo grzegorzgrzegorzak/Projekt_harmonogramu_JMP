@@ -8,5 +8,5 @@ urlpatterns = [
     path('create_store/', views.createStore, name='crud'),
     path('update_store/<str:pk>/', views.updateStore, name='update_store'),
     path('delete_store/<str:pk>/', views.deleteStore, name='delete_store'),
-    path('json_view/', views.json_view, name='json_view')
+    path('region_color_row/', views.region_color_row, name='json_view')
 ]
