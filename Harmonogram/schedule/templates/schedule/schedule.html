@@ -17,11 +17,19 @@
                 <th>Ulica</th>
             </tr>
             {% for i in stores %}
-                <tr class="color-row" id="rowsd">
-                    <td>{{i.store_number}}</td>
-                    <td>{{i.store_city}}</td>
-                    <td>{{i.store_street}}</td>
-                </tr>
+                {% if i.region == 'T' %}
+                    <tr class="color-row color-row-green">
+                        <td>{{i.store_number}}</td>
+                        <td>{{i.store_city}}</td>
+                        <td>{{i.store_street}}</td>
+                    </tr>
+                {% else %}
+                    <tr class="color-row">
+                        <td>{{i.store_number}}</td>
+                        <td>{{i.store_city}}</td>
+                        <td>{{i.store_street}}</td>
+                    </tr>
+                {% endif %}
             {% endfor %}
 
         </table>
