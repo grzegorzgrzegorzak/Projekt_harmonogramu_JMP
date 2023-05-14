@@ -19,5 +19,12 @@
 }
 
 .color-row-green {
-    background-color: green
+    background-color: rgb(0, 176, 80)!important;
+    color: black
+}
+
+.color-row-grey {
+    background-color: rgb(221, 217, 196)!important;
+    color: black
+
 }
