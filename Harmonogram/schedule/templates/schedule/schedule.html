@@ -4,11 +4,11 @@
 
 {% include 'schedule/status.html' %}
 
-<div class="row">
+<div class="table">
     <div class="col-md-12">
         <div class="schedule-action">
-            <a class="btn btn-dark  btn-sm btn-block" href="">Add Store</a>
-            <a class="btn btn-dark  btn-sm btn-block" href="">Edit</a>
+            <a class="btn btn-dark btn-sm btn-block" href="{% url 'crud' %}">Add Store</a>
+            <a class="btn btn-dark btn-sm btn-block" href="update_store">Edit</a>
         </div>
         <table class="table table-striped table-dark">
             <tr>
@@ -18,25 +18,50 @@
             </tr>
             {% for i in stores %}
                 {% if i.region == 'T' %}
-                    <tr class="color-row color-row-green">
+<!--                    <div class="store-row">-->
+                    <tr class="color-row color-row-green {% if i.if_in_realization %} in-realization {% endif %}">
                         <td>{{i.store_number}}</td>
                         <td>{{i.store_city}}</td>
                         <td>{{i.store_street}}</td>
+                        <td><a class="btn btn-dark btn-sm btn-block hidden-button" href="{% url 'update_store' i.id %}">Edit</a></td>
                     </tr>
-
+<!--                    </div>-->
                 {% elif i.region == 'LUB' %}
-                    <tr class="color-row color-row-grey">
+<!--                    <div class="store-row">-->
+                    <tr class="color-row color-row-grey {% if i.if_in_realization %} in-realization {% endif %}">
                         <td>{{i.store_number}}</td>
                         <td>{{i.store_city}}</td>
                         <td>{{i.store_street}}</td>
+                        <td><a class="btn btn-dark btn-sm btn-block hidden-button" href="{% url 'update_store' i.id %}">Edit</a></td>
                     </tr>
-
+<!--                    </div>-->
+                {% elif i.region == 'M' %}
+<!--                    <div class="store-row">-->
+                    <tr class="color-row color-row-pink {% if i.if_in_realization %} in-realization {% endif %}">
+                        <td>{{i.store_number}}</td>
+                        <td>{{i.store_city}}</td>
+                        <td>{{i.store_street}}</td>
+                        <td><a class="btn btn-dark btn-sm btn-block hidden-button" href="{% url 'update_store' i.id %}">Edit</a></td>
+                    </tr>
+<!--                    </div>-->
+                {% elif i.region == 'S' %}
+<!--                    <div class="store-row">-->
+                    <tr class="color-row color-row-orange {% if i.if_in_realization %} in-realization {% endif %}">
+                        <td>{{i.store_number}}</td>
+                        <td>{{i.store_city}}</td>
+                        <td>{{i.store_street}}</td>
+                        <td><a class="btn btn-dark btn-sm btn-block hidden-button" href="{% url 'update_store' i.id %}">Edit</a></td>
+                    </tr>
+<!--                    </div>-->
                 {% else %}
+<!--                    <div class="store-row">-->
                     <tr class="color-row">
                         <td>{{i.store_number}}</td>
                         <td>{{i.store_city}}</td>
                         <td>{{i.store_street}}</td>
+                        <td><a class="btn btn-dark btn-sm btn-block hidden-button" href="{% url 'update_store' i.id %}">Edit</a></td>
                     </tr>
+<!--                    </div>-->
                 {% endif %}
             {% endfor %}
 

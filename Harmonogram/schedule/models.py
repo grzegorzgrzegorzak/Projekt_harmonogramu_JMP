@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models import Model, CharField, IntegerField, DateTimeField, \
     OneToOneField, ForeignKey, SET_NULL
@@ -60,6 +62,12 @@ class Store(Model):
 
     def __str__(self):
         return f"{self.store_number} {self.store_city} {self.store_street}"
+
+    def if_in_realization(self):
+        if self.date_start_installation == None or self.date_opening == None:
+            return False
+        else:
+            return self.date_start_installation <= timezone.now() <= self.date_opening
 
     "Jak zrobić aby w zależności od tego czy jest typ nowy, date disassemblin się nie pojawiała"
 

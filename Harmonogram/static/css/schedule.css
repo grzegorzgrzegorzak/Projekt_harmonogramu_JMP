@@ -28,3 +28,26 @@
     color: black
 
 }
+
+.color-row-pink {
+    background-color: rgb(230, 184, 183)!important;
+    color: black
+
+}
+
+.color-row-orange {
+    background-color: rgb(226, 107, 10)!important;
+    color: black
+
+}
+
+.hidden-button {
+    display: flex;
+}
+
+.in-realization {
+    border-style: solid;
+    border-width: 15px;
+}
+
+

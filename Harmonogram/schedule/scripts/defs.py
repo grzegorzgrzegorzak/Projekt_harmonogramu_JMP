@@ -1,4 +1,6 @@
 import json
+
+from django.utils import timezone
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 from datetime import datetime, timedelta
@@ -60,7 +62,7 @@ def get_street_or_number(string=str, position=int):
             if position == 1:
                 return values[-1]
             else:
-                return "".join(values[:-1])
+                return " ".join(values[:-1])
 
     else:
         return None
@@ -111,5 +113,13 @@ print(create_json())
 #     now = datetime.now()
 #     return
 
-date = datetime.now().date() + timedelta(days=30)
-print(date)
+# date = datetime.now().date() + timedelta(days=30)
+
+data_1 = 2023-11-21
+data_2 = 2023-10-22
+data_3 = 2023-11-23
+
+def if_data(data_1, data_2, data_3):
+    return data_1 >= data_2 >= data_3
+
+print(if_data(data_1, data_2, data_3))

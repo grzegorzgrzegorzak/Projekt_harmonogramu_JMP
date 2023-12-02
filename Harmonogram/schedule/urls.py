@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+# from .views import GetModelDataView
 
 urlpatterns = [
     path('', views.schedule, name='schedule'),
@@ -8,5 +9,7 @@ urlpatterns = [
     path('create_store/', views.createStore, name='crud'),
     path('update_store/<str:pk>/', views.updateStore, name='update_store'),
     path('delete_store/<str:pk>/', views.deleteStore, name='delete_store'),
-    path('region_color_row/', views.region_color_row, name='json_view')
+    # path('get_model_data/', views.GetModelDataView.as_view(),
+    #      name='get_model_data')
+
 ]
